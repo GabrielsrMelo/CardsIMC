@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun IMCScreen(modifier: Modifier = Modifier){
+fun IMCScreen(modifier: Modifier = Modifier) {
     var altura by remember {
         mutableStateOf("")
     }
@@ -84,7 +84,7 @@ fun IMCScreen(modifier: Modifier = Modifier){
     ) {
         Box(
             modifier = Modifier.fillMaxSize()
-        ){
+        ) {
             Column(modifier = Modifier.fillMaxSize()) {
 
                 // -- header --
@@ -138,26 +138,26 @@ fun IMCScreen(modifier: Modifier = Modifier){
 
                             OutlinedTextField(
                                 value = altura,
-                                onValueChange = {altura= it},
-                                label = {Text(text = "Altura")},
+                                onValueChange = { altura = it },
+                                label = { Text(text = "Altura") },
                                 shape = RoundedCornerShape(15.dp),
                                 colors = OutlinedTextFieldDefaults.colors(
-                                        focusedBorderColor = colorResource(R.color.cor_app),
-                                        unfocusedBorderColor =  colorResource(R.color.cor_app),
-                                        focusedLabelColor = colorResource(R.color.cor_app)
-                            )
+                                    focusedBorderColor = colorResource(R.color.cor_app),
+                                    unfocusedBorderColor = colorResource(R.color.cor_app),
+                                    focusedLabelColor = colorResource(R.color.cor_app)
+                                )
                             )
 
                             Spacer(modifier = Modifier.height(10.dp))
 
                             OutlinedTextField(
                                 value = peso,
-                                onValueChange = {peso= it},
-                                label = {Text(text = "Peso")},
+                                onValueChange = { peso = it },
+                                label = { Text(text = "Peso") },
                                 shape = RoundedCornerShape(15.dp),
                                 colors = OutlinedTextFieldDefaults.colors(
                                     focusedBorderColor = colorResource(R.color.cor_app),
-                                    unfocusedBorderColor =  colorResource(R.color.cor_app),
+                                    unfocusedBorderColor = colorResource(R.color.cor_app),
                                     focusedLabelColor = colorResource(R.color.cor_app)
                                 )
                             )
@@ -166,9 +166,9 @@ fun IMCScreen(modifier: Modifier = Modifier){
 
                             OutlinedButton(
                                 onClick = {
-                                    val alturaNum= altura.replace(",",".").toDoubleOrNull()
-                                    val pesoNum = peso.replace(",",".").toDoubleOrNull()
-                                    if (alturaNum != null && alturaNum > 0 && pesoNum !=null){
+                                    val alturaNum = altura.replace(",", ".").toDoubleOrNull()
+                                    val pesoNum = peso.replace(",", ".").toDoubleOrNull()
+                                    if (alturaNum != null && alturaNum > 0 && pesoNum != null) {
                                         imc = calcularIMC(altura = alturaNum, peso = pesoNum)
                                         categoriaImc = determinarCategoriaIMC(imc)
                                     }
@@ -192,43 +192,43 @@ fun IMCScreen(modifier: Modifier = Modifier){
 
                     }
                 }
-            }
-            if (categoriaImc.isNotEmpty()) {
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 32.dp)
-                        .padding(top = 16.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = Color(0xFF4CAF50)
-                    )
-                ) {
-                    Row(
+                if (categoriaImc.isNotEmpty()) {
+                    Card(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(20.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                            .padding(horizontal = 32.dp)
+                            .padding(top = 16.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color(0xFF4CAF50)
+                        )
                     ) {
-                        Text(
-                            text = String.format("%.1f", imc),
-                            fontSize = 28.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White
-                        )
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Text(
-                            text = categoriaImc,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White
-                        )
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(20.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = String.format("%.1f", imc),
+                                fontSize = 28.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Text(
+                                text = categoriaImc,
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White
+                            )
+                        }
                     }
                 }
+
+
             }
 
-
         }
-
     }
 }
 
